@@ -7,14 +7,13 @@ Redmine 命令行管理工具，支持任务、项目、用户和工时管理。
 ```bash
 git clone git@github.com:Edurle/redmine-cli.git
 cd redmine-cli
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -e .
+conda create -n redmine-cli python=3.12 -y
+conda run -n redmine-cli pip install -e .
 ```
 
 验证安装：
 ```bash
-redmine --help
+conda run -n redmine-cli redmine --help
 ```
 
 ## 配置
@@ -112,9 +111,9 @@ redmine time activities                查看活动类型
 ## 开发
 
 ```bash
-pip install -e ".[dev]"
-pytest                  # 运行测试
-ruff check src/         # 代码检查
+conda run -n redmine-cli pip install -e ".[dev]"
+conda run -n redmine-cli pytest           # 运行测试
+conda run -n redmine-cli ruff check src/  # 代码检查
 ```
 
 ## 技术栈

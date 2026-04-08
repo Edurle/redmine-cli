@@ -18,7 +18,8 @@ The CLI can be installed via **conda** or **pip**. Choose one:
 ### Method A: Conda (Recommended)
 
 ```bash
-cd /home/wang/redmine-cli
+git clone git@github.com:Edurle/redmine-cli.git
+cd redmine-cli
 conda create -n redmine-cli python=3.12 -y
 conda run -n redmine-cli pip install -e .
 ```
@@ -42,7 +43,7 @@ redmine my-issues
 ### Method B: pip (system Python)
 
 ```bash
-cd /home/wang/redmine-cli
+cd redmine-cli
 pip install -e .          # or: pip3 install -e .
 # or with dev dependencies:
 pip install -e ".[dev]"

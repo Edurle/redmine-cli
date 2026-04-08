@@ -11,6 +11,79 @@ description: |
 
 # Redmine CLI Tool Guide
 
+## Installation
+
+The CLI can be installed via **conda** or **pip**. Choose one:
+
+### Method A: Conda (Recommended)
+
+```bash
+cd /home/wang/redmine-cli
+conda create -n redmine-cli python=3.12 -y
+conda run -n redmine-cli pip install -e .
+```
+
+All commands must be prefixed with `conda run -n redmine-cli`:
+
+```bash
+conda run -n redmine-cli redmine --help
+conda run -n redmine-cli redmine config test
+conda run -n redmine-cli redmine my-issues
+```
+
+Or activate the environment first to use `redmine` directly:
+
+```bash
+conda activate redmine-cli
+redmine --help
+redmine my-issues
+```
+
+### Method B: pip (system Python)
+
+```bash
+cd /home/wang/redmine-cli
+pip install -e .          # or: pip3 install -e .
+# or with dev dependencies:
+pip install -e ".[dev]"
+```
+
+After pip install, use `redmine` directly:
+
+```bash
+redmine --help
+redmine config test
+redmine my-issues
+```
+
+If `redmine` is not on PATH, run as a Python module:
+
+```bash
+python -m redmine_cli.main --help       # or: python3 -m redmine_cli.main --help
+python -m redmine_cli.main config test
+python -m redmine_cli.main my-issues
+```
+
+### How to Detect the Installation Method
+
+Run these checks in order:
+
+```bash
+# Check conda environment
+conda env list 2>/dev/null | grep redmine-cli
+
+# Check if redmine command is available
+which redmine 2>/dev/null
+
+# Check if the package is installed
+python -c "import redmine_cli; print(redmine_cli.__version__)"
+```
+
+**Decision logic:**
+1. If conda env `redmine-cli` exists → use `conda run -n redmine-cli redmine <args>`
+2. Else if `redmine` is on PATH → use `redmine <args>` directly
+3. Else → use `python -m redmine_cli.main <args>`
+
 ## Prerequisites
 
 Before using the CLI, verify it is installed and configured:
